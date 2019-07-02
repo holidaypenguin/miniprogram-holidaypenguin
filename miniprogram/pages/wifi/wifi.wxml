@@ -1,0 +1,11 @@
+<!--miniprogram/pages/wifi/wifi.wxml-->
+
+<view class="uploader" 
+  wx:for="{{queryResult}}"
+  wx:key="index"
+  bindtap="itemHandler"
+  data-index="{{index}}">
+  <view class="uploader-text">
+    <text>连接{{item.name}}wifi</text>
+  </view>
+</view>
