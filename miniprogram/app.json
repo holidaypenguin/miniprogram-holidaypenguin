@@ -11,7 +11,8 @@
     "pages/openapi/serverapi/serverapi",
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
-    "pages/wifi/wifi"
+    "pages/wifi/wifi",
+    "pages/love/love"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

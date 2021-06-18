@@ -1,0 +1,10 @@
+{
+  "name": "ry_platform",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {},
+  "dependencies": {
+    "miniprogram-api-promise": "^1.0.4"
+  },
+  "devDependencies": {}
+}

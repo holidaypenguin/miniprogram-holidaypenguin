@@ -136,3 +136,9 @@ page {
   line-height: 36rpx;
   word-break: break-all;
 }
+
+.love-item{
+  margin-top: 100rpx;
+  width: 150rpx;
+  height: 150rpx;
+}

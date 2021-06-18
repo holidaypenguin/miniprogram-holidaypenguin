@@ -1,0 +1,16 @@
+
+<view class="pannel">
+
+  <view class="column c{{index}}" 
+    wx:for="{{imageShowList}}"
+    wx:key="{{index}}">
+    <view class="item i{{index1}}"
+      wx:for="{{item}}" 
+      wx:for-item="item1"
+      wx:for-index="index1"
+      wx:key="index1">
+      <image
+        src="{{item1}}"></image>
+    </view>
+  </view>
+</view>

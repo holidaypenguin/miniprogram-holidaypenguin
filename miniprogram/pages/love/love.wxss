@@ -1,0 +1,64 @@
+/* miniprogram/pages/love/love.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #FFC0CB;
+}
+.pannel{
+  display: flex;
+  height: 470rpx;
+  width: 675rpx;
+  padding-top: 30rpx;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.column{
+  width: 75rpx;
+  height: 60rpx;
+}
+.c0{
+  margin-top: 0;
+}
+.c1{
+  margin-top: -30rpx;
+}
+.c2{
+  margin-top: -30rpx;
+}
+.c3{
+  margin-top: 0;
+}
+.c4{
+  margin-top: 50rpx;
+}
+.c5{
+  margin-top: 0%;
+}
+.c6{
+  margin-top: -30rpx;
+}
+.c7{
+  margin-top: -30rpx;
+}
+.c8{
+  margin-top: 0%;
+}
+.item{
+  width: 100%;
+  height: 100%;
+  
+  /* transition: transform 0.3s; */
+  animation: mylove 1s;
+}
+@keyframes mylove{
+  from {transform: rotateY(160deg);}
+  to {transform: rotateY(0deg);}
+}
+image{
+  width: 100%;
+  height: 100%;
+  transform: scale(0.95);
+}

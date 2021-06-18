@@ -1,5 +1,15 @@
 //app.js
+import { promisifyAll, promisify } from './utils/miniprogram-api-promise/src/index';
+
+const wxp = {}
+// promisify all wx's api
+promisifyAll(wx, wxp)
+// console.log(wxp.getSystemInfoSync())
+// wxp.getSystemInfo().then(console.log)
+
 App({
+  wxp,
+
   onLaunch: function () {
     
     if (!wx.cloud) {

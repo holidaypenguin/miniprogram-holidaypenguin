@@ -55,4 +55,8 @@
     </navigator>
   </view>
 
+  <!-- <navigator url="../love/love">
+    <image class="love-item" src="cloud://prod-6whap.7072-prod-6whap-1259566406/heart01.png"></image>
+  </navigator> -->
+
 </view>
