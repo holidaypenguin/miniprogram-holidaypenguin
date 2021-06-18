@@ -43,7 +43,7 @@ page {
 .userinfo-avatar {
   width: 100rpx;
   height: 100rpx;
-  margin: 20rpx;
+  margin: 20rpx auto;
   border-radius: 50%;
   background-size: cover;
   background-color: white;

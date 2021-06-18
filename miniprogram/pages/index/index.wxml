@@ -6,7 +6,7 @@
     <button 
       bindtap="onGetUserInfo"
       class="userinfo-avatar"
-      style="background-image: url({{avatarUrl}}); width: 100rpx;"
+      style="background-image: url({{avatarUrl}});"
     ></button>
     <!-- <view class="userinfo-nickname-wrapper">
       <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
@@ -63,6 +63,13 @@
   <!-- <navigator url="../love/love">
     <image class="love-item" src="cloud://prod-6whap.7072-prod-6whap-1259566406/heart01.png"></image>
   </navigator> -->
+
+  <!-- 记账 -->
+  <view class="uploader" wx:if="{{avatarUrl != './user-unlogin.png'}}">
+    <navigator url="../cashGiftStream/cashGiftStream" open-type="navigate" class="uploader-text">
+      <text>记账</text>
+    </navigator>
+  </view>
 
 
 </view>

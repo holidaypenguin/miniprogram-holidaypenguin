@@ -1,0 +1,18 @@
+<!--miniprogram/pages/cashGiftStream/cashGiftStream.wxml-->
+<van-dropdown-menu class="top">
+  <van-dropdown-item model:value="{{ userValue }}" options="{{ userOption }}" bindchange="onQueryStream"/>
+  <van-dropdown-item model:value="{{ projectValue }}" options="{{ projectOption }}" bindchange="onQueryStream"/>
+</van-dropdown-menu>
+
+
+<view class="list">
+  <view class="item" wx:for="{{streamList}}" wx:key="index">
+    
+    <view class="item-stream">{{projectObj[item.projectId].name}}  {{projectObj[item.projectId].time}}</view>
+    <view class="item-project">
+      {{userObj[item.userId].name}}{{userObj[item.userId].otherName ? '-' : ''}}{{userObj[item.userId].otherName}}
+      <view class="item-money">{{typeObj[item.type]}}{{item.money}}</view></view>
+    <!-- <view>{{item.type}}</view> -->
+    <view>{{item.remark}}</view>
+  </view>
+</view>

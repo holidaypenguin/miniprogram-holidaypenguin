@@ -1,5 +1,5 @@
 //app.js
-import { promisifyAll, promisify } from './utils/miniprogram-api-promise/src/index';
+import { promisifyAll, promisify } from 'miniprogram-api-promise';
 
 const wxp = {}
 // promisify all wx's api
