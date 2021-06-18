@@ -30,7 +30,6 @@ Page({
         })
       }
     })
-
   },
 
   onGetUserInfo(e) {

@@ -4,17 +4,21 @@
   "setting": {
     "urlCheck": true,
     "es6": true,
+    "enhance": true,
     "postcss": true,
+    "preloadBackgroundData": false,
     "minified": true,
     "newFeature": true,
     "coverView": true,
     "nodeModules": true,
     "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
     "uglifyFileName": true,
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
     "useApiHostProcess": true,
@@ -29,16 +33,17 @@
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "enhance": true
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./miniprogram/"
+      }
+    ],
+    "minifyWXSS": true
   },
   "appid": "wx05efdbe1140d10f1",
-  "projectname": "miniprogram-holidaypenguin",
-  "libVersion": "2.17.3",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "projectname": "%E5%81%87%E6%97%A5%E4%BC%81%E9%B9%85",
+  "libVersion": "2.14.1",
   "condition": {
     "search": {
       "list": []
@@ -57,22 +62,7 @@
         {
           "id": -1,
           "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "wifi",
-          "pathName": "pages/wifi/wifi",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "love",
-          "pathName": "pages/love/love",
-          "query": "",
-          "scene": null
+          "pathName": "pages/databaseGuide/databaseGuide"
         }
       ]
     }

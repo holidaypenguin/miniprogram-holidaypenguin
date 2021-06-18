@@ -11,6 +11,8 @@
     "pages/openapi/serverapi/serverapi",
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room",
     "pages/wifi/wifi",
     "pages/love/love"
   ],
@@ -21,5 +23,6 @@
     "navigationBarTitleText": "假日企鹅",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
 }

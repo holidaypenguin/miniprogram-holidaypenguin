@@ -7,8 +7,11 @@ cloud.init()
 exports.main = async (event, context) => {
   console.log(event)
   switch (event.action) {
-    case 'sendTemplateMessage': {
-      return sendTemplateMessage(event)
+    case 'requestSubscribeMessage': {
+      return requestSubscribeMessage(event)
+    }
+    case 'sendSubscribeMessage': {
+      return sendSubscribeMessage(event)
     }
     case 'getWXACode': {
       return getWXACode(event)
@@ -22,52 +25,44 @@ exports.main = async (event, context) => {
   }
 }
 
-async function sendTemplateMessage(event) {
+async function requestSubscribeMessage(event) {
+  // 此处为模板 ID，开发者需要到小程序管理后台 - 订阅消息 - 公共模板库中添加模板，
+  // 然后在我的模板中找到对应模板的 ID，填入此处
+  return '请到管理后台申请模板 ID 然后在此替换' // 如 'N_J6F05_bjhqd6zh2h1LHJ9TAv9IpkCiAJEpSw0PrmQ'
+}
+
+async function sendSubscribeMessage(event) {
   const { OPENID } = cloud.getWXContext()
 
-  // 接下来将新增模板、发送模板消息、然后删除模板
-  // 注意：新增模板然后再删除并不是建议的做法，此处只是为了演示，模板 ID 应在添加后保存起来后续使用
-  const addResult = await cloud.openapi.templateMessage.addTemplate({
-    id: 'AT0002',
-    keywordIdList: [3, 4, 5]
-  })
+  const { templateId } = event
 
-  const templateId = addResult.templateId
-
-  const sendResult = await cloud.openapi.templateMessage.send({
+  const sendResult = await cloud.openapi.subscribeMessage.send({
     touser: OPENID,
     templateId,
-    formId: event.formId,
+    miniprogram_state: 'developer',
     page: 'pages/openapi/openapi',
+    // 此处字段应修改为所申请模板所要求的字段
     data: {
-      keyword1: {
-        value: '未名咖啡屋',
+      thing1: {
+        value: '咖啡',
       },
-      keyword2: {
-        value: '2019 年 1 月 1 日',
-      },
-      keyword3: {
-        value: '拿铁',
+      time3: {
+        value: '2020-01-01 00:00',
       },
     }
-  })
-
-  await cloud.openapi.templateMessage.deleteTemplate({
-    templateId,
   })
 
   return sendResult
 }
 
 async function getWXACode(event) {
-
   // 此处将获取永久有效的小程序码，并将其保存在云文件存储中，最后返回云文件 ID 给前端使用
 
   const wxacodeResult = await cloud.openapi.wxacode.get({
     path: 'pages/openapi/openapi',
   })
 
-  const fileExtensionMatches = wxacodeResult.contentType.match(/\/([^\/]+)/)
+  const fileExtensionMatches = wxacodeResult.contentType.match(/\/([^/]+)/)
   const fileExtension = (fileExtensionMatches && fileExtensionMatches[1]) || 'jpg'
 
   const uploadResult = await cloud.uploadFile({
@@ -85,7 +80,6 @@ async function getWXACode(event) {
 }
 
 async function getOpenData(event) {
-  // 需 wx-server-sdk >= 0.5.0
   return cloud.getOpenData({
     list: event.openData.list,
   })
