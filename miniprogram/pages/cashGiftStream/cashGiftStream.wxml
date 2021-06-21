@@ -1,18 +1,109 @@
 <!--miniprogram/pages/cashGiftStream/cashGiftStream.wxml-->
+<!-- 头部选择 -->
 <van-dropdown-menu class="top">
   <van-dropdown-item model:value="{{ userValue }}" options="{{ userOption }}" bindchange="onQueryStream"/>
   <van-dropdown-item model:value="{{ projectValue }}" options="{{ projectOption }}" bindchange="onQueryStream"/>
 </van-dropdown-menu>
 
-
+<!-- 礼金列表 -->
 <view class="list">
+  <!-- 总和 -->
+  <block wx:if="{{userValue}}">
+    <view>------------------</view>
+    <view class="count">合计：{{streamCount}}</view>
+    <view>------------------</view>
+  </block>
+  <!-- list -->
   <view class="item" wx:for="{{streamList}}" wx:key="index">
+    <!-- {{item}}-{{item.type == 1}}-{{item.type == 2}}-{{item.type}} -->
+    <block wx:if="{{item.type == 1}}">
+      <view class="item-stream">{{projectObj[item.projectId].name}}  {{projectObj[item.projectId].time}}</view>
+      <view class="item-project">
+        {{userObj[item.userId].name}}{{userObj[item.userId].otherName ? '-' : ''}}{{userObj[item.userId].otherName}}
+        <view class="item-money">{{typeObj[item.type]}}{{item.money}}</view></view>
+      <!-- <view>{{item.type}}</view> -->
+      <view>{{item.remark}}</view>
+    </block>
+    <block wx:if="{{item.type == 2}}">
+      <view class="item-stream">{{userObj[item.userId].name}}{{userObj[item.userId].otherName ? '-' : ''}}{{userObj[item.userId].otherName}}</view>
+      <view class="item-project">
+        {{projectObj[item.projectId].name}}  {{projectObj[item.projectId].time}}  {{item.remark}}
+        <view class="item-money">{{typeObj[item.type]}}{{item.money}}</view></view>
+      <!-- <view>{{item.type}}</view> -->
+      <!-- <view></view> -->
+    </block>
     
-    <view class="item-stream">{{projectObj[item.projectId].name}}  {{projectObj[item.projectId].time}}</view>
-    <view class="item-project">
-      {{userObj[item.userId].name}}{{userObj[item.userId].otherName ? '-' : ''}}{{userObj[item.userId].otherName}}
-      <view class="item-money">{{typeObj[item.type]}}{{item.money}}</view></view>
-    <!-- <view>{{item.type}}</view> -->
-    <view>{{item.remark}}</view>
   </view>
 </view>
+
+<view class="list-empty" wx:if="{{!streamList || streamList.length < 1}}">没有礼金哦~~~~</view>
+
+<!-- 添加人 -->
+<view class="add-icon add-icon-persion" bindtap="triggerAddPersion">
+  <image src="../../images/persion.jpg"></image>
+  <view class="add-icon-el">+</view>
+</view>
+
+<!-- 添加礼金 -->
+<view class="add-icon add-icon-stream" bindtap="triggerAddStream">
+  <image src="../../images/money.jpg"></image>
+  <view class="add-icon-el">+</view>
+</view>
+
+<!-- 添加人 form表单 -->
+<van-popup show="{{ addPersionVisible }}" bind:close="triggerAddPersion" closeable position="bottom" z-index="{{99999}}">
+  <view class="add-header">增加人</view>
+  <view>
+    <van-field label="人名" model:value="{{ persionName }}" placeholder="请输入人名字" />
+    <van-field label="备注人名" model:value="{{ persionOtherName }}" placeholder="请输入备注人名字" />
+  </view>
+
+  <view class="add-buttons">
+    <van-button type="primary" bindtap="addPersionOnlyHandler">保存</van-button>
+    <van-button type="info" bindtap="addPersionNextHandler">保存并继续添加</van-button>
+  </view>
+</van-popup>
+
+<!-- 添加礼金 form表单 -->
+<van-popup show="{{ addStreamVisible }}" bind:close="triggerAddStream" closeable position="bottom" z-index="{{99999}}">
+  <view class="add-header">增加礼金</view>
+  <view>
+    <van-field label="人名" model:value="{{ streamPersionName }}"
+      placeholder="请选择人名" bindtap="triggerAddStreamPersion" readonly/>
+    <van-field label="事件" model:value="{{ streamProjectName }}"
+      placeholder="请选择事件" bindtap="triggerAddStreamProject" readonly/>
+    <van-field label="金额" model:value="{{ streamMoney }}" placeholder="请输入金额" />
+    <van-field label="备注" model:value="{{ streamRemark }}" placeholder="请输入备注" />
+  </view>
+
+  <view class="add-buttons">
+    <van-button type="primary" bindtap="addStreamOnlyHandler">保存</van-button>
+    <van-button type="info" bindtap="addStreamNextHandler">保存并继续添加</van-button>
+  </view>
+</van-popup>
+
+<!-- 添加礼金 选择事件 -->
+<van-popup show="{{ addStreamProjectVisible }}" bind:close="triggerAddStreamProject"
+  position="bottom" z-index="{{999999}}">
+  <van-picker
+    show-toolbar
+    title="选择人"
+    columns="{{ projectOptionInput }}"
+    bind:cancel="triggerAddStreamProject"
+    bind:confirm="addStreamProjectConfirm"
+  />
+</van-popup>
+
+
+<!-- 添加礼金 选择人 -->
+<van-popup show="{{ addStreamPersionVisible }}" bind:close="triggerAddStreamPersion"
+  position="bottom" z-index="{{999999}}">
+  <van-picker
+    show-toolbar
+    title="选择人"
+    columns="{{ userOptionInput }}"
+    bind:cancel="triggerAddStreamPersion"
+    bind:confirm="addStreamPersionConfirm"
+  />
+</van-popup>
+

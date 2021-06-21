@@ -4,6 +4,7 @@
   top: 0;
   left: 0;
   right: 0;
+  z-index: 9999;
 }
 
 .list{
@@ -22,4 +23,60 @@
 }
 .item-money{
   float: right;
+}
+
+.list-empty{
+  text-align: center;
+  margin-top: 200rpx;
+  color: #bfbfbf;
+}
+
+.add-icon{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 30rpx rgba(0, 0, 0, 0.3);
+  position: fixed;
+  bottom: 100rpx;
+  left: 50%;
+  margin-left: -50rpx;
+  line-height: 95rpx;
+  text-align: center;
+  font-size: 100rpx;
+  color: #fc7a10;
+  overflow: hidden;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+.add-icon image{
+  opacity: 0.3;
+}
+.add-icon-persion{
+  padding: 5rpx 0;
+  margin-left: -150rpx;
+}
+.add-icon-stream{
+  padding: 10rpx 20rpx;
+  margin-left: 50rpx;
+}
+.add-icon-el{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.add-header{
+  padding: 30rpx 0;
+  font-size: 50rpx;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+}
+.add-buttons{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 60rpx 0;
 }
