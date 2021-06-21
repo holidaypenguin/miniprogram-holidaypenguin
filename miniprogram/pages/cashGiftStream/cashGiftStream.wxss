@@ -9,6 +9,7 @@
 
 .list{
   margin-top: 60px;
+  margin-bottom: 250rpx;
 }
 
 .item{
@@ -54,11 +55,11 @@
 }
 .add-icon-persion{
   padding: 5rpx 0;
-  margin-left: -150rpx;
+  margin-left: -170rpx;
 }
 .add-icon-stream{
   padding: 10rpx 20rpx;
-  margin-left: 50rpx;
+  margin-left: 70rpx;
 }
 .add-icon-el{
   position: absolute;
@@ -79,4 +80,14 @@
   display: flex;
   justify-content: space-evenly;
   margin: 60rpx 0;
+}
+.van-radio-group{
+  width: 100%;
+  display: flex;
+}
+.van-radio{
+  padding-right: 40rpx;
+}
+.project-type:last-child{
+  padding-right: 0;
 }

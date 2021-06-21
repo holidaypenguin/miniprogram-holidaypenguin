@@ -44,6 +44,12 @@
   <view class="add-icon-el">+</view>
 </view>
 
+<!-- 添加事件 -->
+<view class="add-icon" bindtap="triggerAddProject">
+  <image src="../../images/persion.jpg"></image>
+  <view class="add-icon-el">+</view>
+</view>
+
 <!-- 添加礼金 -->
 <view class="add-icon add-icon-stream" bindtap="triggerAddStream">
   <image src="../../images/money.jpg"></image>
@@ -61,6 +67,27 @@
   <view class="add-buttons">
     <van-button type="primary" bindtap="addPersionOnlyHandler">保存</van-button>
     <van-button type="info" bindtap="addPersionNextHandler">保存并继续添加</van-button>
+  </view>
+</van-popup>
+
+<!-- 添加事件 form表单 -->
+<van-popup show="{{ addProjectVisible }}" bind:close="triggerAddProject" closeable position="bottom" z-index="{{99999}}">
+  <view class="add-header">增加事件</view>
+  <view>
+    <van-field label="事件名" model:value="{{ projectName }}" placeholder="请输入事件名" />
+    <picker mode="date" model:value="{{projectTime}}" bindchange="bindDateChange">
+      <van-field label="事件时间" model:value="{{ projectTime }}" placeholder="请选择时间" readonly/>
+    </picker>
+    <van-field label="事件类型" model:value="{{ projectType }}" placeholder="">
+      <van-radio-group model:value="{{ projectType }}" slot="input" class="project-type">
+        <van-radio name="1">本人</van-radio>
+        <van-radio name="2">他人</van-radio>
+      </van-radio-group>
+    </van-field>
+  </view>
+  <view class="add-buttons">
+    <van-button type="primary" bindtap="addProjectOnlyHandler">保存</van-button>
+    <van-button type="info" bindtap="addProjectNextHandler">保存并继续添加</van-button>
   </view>
 </van-popup>
 

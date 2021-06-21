@@ -45,6 +45,11 @@ Page({
     streamPersionName: '',
     addStreamProjectVisible: false,
     addStreamPersionVisible: false,
+
+    addProjectVisible: false,
+    projectName: '',
+    projectTime: '',
+    projectType: '2',
   },
 
   /**
@@ -154,20 +159,25 @@ Page({
 
   // trigger添加人
   async triggerAddPersion () {
-    // console.log('--triggerAddPersion--')
     this.setData({
       addPersionVisible: !this.data.addPersionVisible
     })
   },
 
   // trigger添加事件
+  triggerAddProject () {
+    this.setData({
+      addProjectVisible: !this.data.addProjectVisible
+    })
+  },
+
+  // trigger添加礼金
   triggerAddStream () {
     // console.log('--triggerAddStream--')
     this.setData({
       addStreamVisible: !this.data.addStreamVisible
     })
   },
-
   // trigger选择事件
   triggerAddStreamProject () {
     this.setData({
@@ -181,7 +191,7 @@ Page({
       addStreamProjectVisible: false,
     })
   },
-
+  // trigger选择人
   triggerAddStreamPersion () {
     this.setData({
       addStreamPersionVisible: !this.data.addStreamPersionVisible
@@ -194,8 +204,6 @@ Page({
       addStreamPersionVisible: false,
     })
   },
-
-  addProject () {},
 
   // 添加一个个人
   async addPersionOnlyHandler () {
@@ -246,6 +254,60 @@ Page({
     this.setData({
       persionName: '',
       persionOtherName: '',
+    })
+  },
+
+  // 添加一个事件
+  async addProjectOnlyHandler () {
+    await this.addProjectNextHandler()
+    this.triggerAddProject()
+  },
+  // 连续添加事件
+  async addProjectNextHandler () {
+    if (this.adding) return
+    this.adding = true
+    await app.wxp.showLoading({
+      title: '添加中',
+      mask: true,
+    })
+    await this.addProject(this.data.projectName, this.data.projectTime, this.data.projectType).catch(e => {
+      this.adding = false
+
+      return Promise.reject(e)
+    })
+    this.cleanProjectMsg()
+
+    this.adding = false
+
+    wx.hideLoading({
+      success: (res) => {},
+    })
+  },
+  // 添加事件保存到数据库
+  async addProject (name = '', time = '', type = 2) {
+    if (!name) {
+      wx.showToast({
+        title: '请输入事件名字',
+      })
+      return Promise.reject()
+    }
+    const db = wx.cloud.database()
+    await db.collection('cash_gift_project').add({
+      data: {
+        name,
+        time,
+        type,
+      }
+    })
+
+    await this.onQueryProject()
+  },
+  // 清空事件输入信息
+  cleanProjectMsg () {
+    this.setData({
+      projectName: '',
+      projectTime: '',
+      projectType: '2',
     })
   },
 
